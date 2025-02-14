@@ -29,24 +29,24 @@ public class ProductRepository {
                 .orElseThrow(() -> new RuntimeException("product not found"));
     }
 
-    public Product edit(Product product) {
+    public Product edit(Product updatedProduct) {
         Iterator<Product> iterator = productData.iterator();
         while (iterator.hasNext()) {
             Product existingProduct = iterator.next();
-            if (existingProduct.getProductId().equals(product.getProductId())) {
-                existingProduct.setProductName(product.getProductName());
-                existingProduct.setProductQuantity(product.getProductQuantity());
+            if (existingProduct.getProductId().equals(updatedProduct.getProductId())) {
+                existingProduct.setProductName(updatedProduct.getProductName());
+                existingProduct.setProductQuantity(updatedProduct.getProductQuantity());
                 return existingProduct;
             }
         }
         throw new RuntimeException("Product not found");
     }
 
-    public void delete(Product product) {
+    public void delete(Product deletedProduct) {
         Iterator<Product> iterator = productData.iterator();
         while (iterator.hasNext()) {
             Product existingProduct = iterator.next();
-            if (existingProduct.equals(product)) {
+            if (existingProduct.equals(deletedProduct)) {
                 iterator.remove();
                 return;
             }
