@@ -41,4 +41,16 @@ public class ProductRepository {
         }
         throw new RuntimeException("Product not found");
     }
+
+    public void delete(Product product) {
+        Iterator<Product> iterator = productData.iterator();
+        while (iterator.hasNext()) {
+            Product existingProduct = iterator.next();
+            if (existingProduct.equals(product)) {
+                iterator.remove();
+                return;
+            }
+        }
+        throw new RuntimeException("Product not found");
+    }
 }
