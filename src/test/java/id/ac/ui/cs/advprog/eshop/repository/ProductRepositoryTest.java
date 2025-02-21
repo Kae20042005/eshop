@@ -19,6 +19,7 @@ class ProductRepositoryTest {
     @BeforeEach
     void setUp() {
     }
+
     @Test
     void testCreateAndFind() {
         Product product = new Product();
@@ -34,11 +35,23 @@ class ProductRepositoryTest {
         assertEquals(product.getProductName(), savedProduct.getProductName());
         assertEquals(product.getProductQuantity(), savedProduct.getProductQuantity());
     }
+
+    @Test
+    void testCreateWithoutId() {
+        Product product = new Product();
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        assertNotNull(product.getProductId());
+    }
+
     @Test
     void testFindAllifEmpty() {
         Iterator<Product> productIterator = productRepository.findAll();
         assertFalse(productIterator.hasNext());
     }
+
     @Test
     void testFindAllifMoreThanOneProduct() {
         Product product1 = new Product();
@@ -60,6 +73,7 @@ class ProductRepositoryTest {
         savedProduct = productIterator.next();
         assertEquals(product2.getProductName(), savedProduct.getProductName());
     }
+
     @Test
     void testEdit() {
         Product product = new Product();
@@ -79,6 +93,16 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void testEditNotFound() {
+        Product product = new Product();
+        product.setProductId("063881b4-b601-4d59-8189-6a3db0052732");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100); // if there is no products to edit
+
+        assertThrows(RuntimeException.class, () -> productRepository.edit(product));
+    }
+
+    @Test
     void testDelete() {
         Product product = new Product();
         product.setProductId("063881b4-b601-4d59-8189-6a3db0052732");
@@ -88,5 +112,15 @@ class ProductRepositoryTest {
 
         productRepository.delete(product);
         assertThrows(RuntimeException.class, () -> productRepository.findById(product.getProductId()));
+    }
+
+    @Test
+    void testDeleteNotFound() {
+        Product product = new Product();
+        product.setProductId("063881b4-b601-4d59-8189-6a3db0052732");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100); // if there is no products to delete
+
+        assertThrows(RuntimeException.class, () -> productRepository.delete(product));
     }
 }
