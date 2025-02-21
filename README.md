@@ -1,0 +1,3 @@
+Reflection Module 2
+(1) Seperti menggunakan exception yang generic, strategi saya untuk membenarkannya adalah dengan cara mencoba untuk membuat exception yang lebih spesifik, semisal untuk value yang tidak ada maka menggunakan NullPointerException
+(2) Iya, Karena saya telah membuat workflow untuk melakukan pemeriksaan dan deploy secara otomatis melalui file build.yml, ci.yml, dan scorecard.yml. Otomasi ini terjadi ketika saya melakukan push ke github saya, sehingga file-file tersebut membantu memeriksa dan mendeploy kode aplikasi saya.
