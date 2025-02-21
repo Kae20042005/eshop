@@ -75,7 +75,7 @@ class ProductRepositoryTest {
         productRepository.edit(updatedProduct);
 
         Product editedProduct = productRepository.findById("063881b4-b601-4d59-8189-6a3db0052732");
-        assertNotEquals(product.getProductName(), editedProduct.getProductName());
+        assertNotEquals("Sampo Cap Bambang", editedProduct.getProductName());
     }
 
     @Test
@@ -87,6 +87,6 @@ class ProductRepositoryTest {
         productRepository.create(product);
 
         productRepository.delete(product);
-        assertNull(productRepository.findById(product.getProductId()));
+        assertThrows(RuntimeException.class, () -> productRepository.findById(product.getProductId()));
     }
 }
