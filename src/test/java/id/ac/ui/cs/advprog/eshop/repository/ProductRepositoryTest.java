@@ -99,7 +99,7 @@ class ProductRepositoryTest {
         product.setProductName("Sampo Cap Bambang");
         product.setProductQuantity(100); // if there is no products to edit
 
-        assertThrows(RuntimeException.class, () -> productRepository.edit(product));
+        assertThrows(NullPointerException.class, () -> productRepository.edit(product));
     }
 
     @Test
@@ -111,7 +111,7 @@ class ProductRepositoryTest {
         productRepository.create(product);
 
         productRepository.delete(product);
-        assertThrows(RuntimeException.class, () -> productRepository.findById(product.getProductId()));
+        assertThrows(NullPointerException.class, () -> productRepository.findById(product.getProductId()));
     }
 
     @Test
@@ -121,6 +121,6 @@ class ProductRepositoryTest {
         product.setProductName("Sampo Cap Bambang");
         product.setProductQuantity(100); // if there is no products to delete
 
-        assertThrows(RuntimeException.class, () -> productRepository.delete(product));
+        assertThrows(NullPointerException.class, () -> productRepository.delete(product));
     }
 }

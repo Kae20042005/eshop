@@ -28,7 +28,7 @@ public class ProductRepository {
         return productData.stream()
                 .filter(product -> product.getProductId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("product not found"));
+                .orElseThrow(() -> new NullPointerException("product not found"));
     }
 
     public Product edit(Product updatedProduct) {
@@ -41,7 +41,7 @@ public class ProductRepository {
                 return existingProduct;
             }
         }
-        throw new RuntimeException("Product not found");
+        throw new NullPointerException("Product not found");
     }
 
     public void delete(Product deletedProduct) {
@@ -53,6 +53,6 @@ public class ProductRepository {
                 return;
             }
         }
-        throw new RuntimeException("Product not found");
+        throw new NullPointerException("Product not found");
     }
 }
