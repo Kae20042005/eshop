@@ -28,4 +28,5 @@ class ProductTest {
     void testGetProductQuantity() {
         assertEquals(100, product.getProductQuantity());
     }
+
 }
