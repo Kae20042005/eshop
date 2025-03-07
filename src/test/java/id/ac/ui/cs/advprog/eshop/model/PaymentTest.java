@@ -45,7 +45,7 @@ public class PaymentTest {
 
         assertEquals("1d6ac561-6257-44b2-acf6-9a06d39392eb", payment.getId());
         assertEquals("SUCCESS", payment.getStatus());
-        assertEquals(payment.getOrder().getStatus());
+        assertEquals(payment.getOrder().getStatus(), payment.getStatus());
     }
     @Test
     void testCreatePaymentWithVoucherRejectedStatus() {
@@ -55,7 +55,7 @@ public class PaymentTest {
 
         assertEquals("1d6ac561-6257-44b2-acf6-9a06d39392eb", payment.getId());
         assertEquals("REJECTED", payment.getStatus());
-        assertEquals("FAILED", payment.getOrder.getStatus());
+        assertEquals("FAILED", payment.getOrder().getStatus());
     }
     @Test
     void testCreatePaymentWithCODSuccessStatus() {
@@ -67,14 +67,14 @@ public class PaymentTest {
         assertEquals(payment.getOrder().getStatus(), payment.getStatus());
     }
     @Test
-    void testCreatePaymentWithVoucherRejectedStatus() {
+    void testCreatePaymentWithCODRejectedStatus() {
         this.paymentData.remove("address");
         Payment payment = new Payment("1d6ac561-6257-44b2-acf6-9a06d39392eb", "VOUCHER",
                 this.paymentData, order);
 
         assertEquals("1d6ac561-6257-44b2-acf6-9a06d39392eb", payment.getId());
         assertEquals("REJECTED", payment.getStatus());
-        assertEquals("FAILED", payment.getOrder.getStatus());
+        assertEquals("FAILED", payment.getOrder().getStatus());
     }
     @Test
     void testCreatePaymentWithInvalidMethod() {
@@ -90,7 +90,7 @@ public class PaymentTest {
                 this.paymentData, order);
 
         assertEquals("REJECTED", payment.getStatus());
-        assertEquals("FAILED", payment.getOrder.getStatus());
+        assertEquals("FAILED", payment.getOrder().getStatus());
 
         payment.setStatus(payment.getMethod());
 
