@@ -64,7 +64,7 @@ public class PaymentTest {
 
         assertEquals("1d6ac561-6257-44b2-acf6-9a06d39392eb", payment.getId());
         assertEquals("SUCCESS", payment.getStatus());
-        assertEquals(payment.getOrder().getStatus());
+        assertEquals(payment.getOrder().getStatus(), payment.getStatus());
     }
     @Test
     void testCreatePaymentWithVoucherRejectedStatus() {
@@ -92,9 +92,9 @@ public class PaymentTest {
         assertEquals("REJECTED", payment.getStatus());
         assertEquals("FAILED", payment.getOrder.getStatus());
 
-        payment.setPaymentData("voucherCode", "ESHOPabc12345678");
+        payment.setStatus(payment.getMethod());
 
         assertEquals("SUCCESS", payment.getStatus());
-        assertEquals(payment.getOrder().getStatus());
+        assertEquals(payment.getOrder().getStatus(), payment.getStatus());
     }
 }
